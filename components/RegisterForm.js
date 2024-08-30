@@ -10,13 +10,13 @@ function RegisterForm({ user, updateUser }) {
     last_name: '',
     photo: '',
     about: '',
-    uid: user.uid
+    uid: user.uid,
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
     }));
   };
   const handleSubmit = (e) => {
