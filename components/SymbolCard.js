@@ -5,11 +5,15 @@ import {
   Button, Card, Container, Modal,
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import { deleteSound } from '../api/sounds.JS';
+import { useAuth } from '../utils/context/authContext';
+import { deleteSound, addSoundToList } from '../api/sounds.JS';
 
 export default function SymbolCard({ objectSound, onUpdate }) {
   const [show, setShow] = useState(false);
   const router = useRouter();
+  const { user } = useAuth();
+
+  console.warn(user);
   if (!objectSound) {
     console.error('soundObject is undefined');
     return null;
@@ -29,6 +33,11 @@ export default function SymbolCard({ objectSound, onUpdate }) {
     });
   };
 
+  // handleAddButton
+  const handleAddButton = () => {
+    addSoundToList({ user_id: user.id, symbol_id: objectSound.id });
+  };
+
   const handleModal = () => {
     setShow(!show);
   };
@@ -45,10 +54,16 @@ export default function SymbolCard({ objectSound, onUpdate }) {
             {objectSound.pronunciation}
           </Card.Text>
           <Container className="d-flex justify-content-evenly" style={{ padding: '1px' }}>
-            <Button style={{ margin: '1px' }} variant="success">add</Button>
+            <Button
+              style={{ margin: '1px' }}
+              onClick={handleAddButton}
+              variant="success"
+
+            >
+              Add
+            </Button>
             <Button style={{ margin: '1px' }} onClick={handleModal} variant="danger">delete</Button>
             <Button style={{ margin: '1px' }} onClick={handleUpdateButton} variant="primary">update</Button>
-
           </Container>
         </Card.Body>
       </Card>

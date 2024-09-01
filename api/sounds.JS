@@ -64,6 +64,24 @@ async function deleteSound(pk) {
   }
   return null;
 }
+
+// add sound to my list
+async function addSoundToList(payload) {
+  try {
+    const response = fetch(`${url}/add-symbol/add_to_list`, {
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = (await response).json();
+    return data;
+  } catch (error) {
+    console.warn('I could not add the symbol', error);
+  }
+  return null;
+}
 export {
-  getAllSounds, createSound, deleteSound, updateSound,
+  getAllSounds, createSound, deleteSound, updateSound, addSoundToList,
 };
