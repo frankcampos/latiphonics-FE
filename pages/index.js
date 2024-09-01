@@ -1,7 +1,9 @@
-import { useAuth } from '../utils/context/authContext';
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
 
 function Home() {
-  const { user } = useAuth();
+  const [mySound, setMySound] = useState([]);
+  const soundLength = mySound.length;
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -12,7 +14,7 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.fbUser.displayName}! </h1>
+      {soundLength ? 'these are my sounds' : <h1>Add sounds to your list </h1>}
 
     </div>
   );
