@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 // eslint-disable-next-line react/prop-types
 /* eslint-disable react/prop-types */
 import { useState, React } from 'react';
@@ -12,8 +13,13 @@ export default function SymbolCard({ objectSound, onUpdate }) {
   const [show, setShow] = useState(false);
   const router = useRouter();
   const { user } = useAuth();
+  // eslint-disable-next-line no-unused-vars
 
   console.warn(user);
+  if (!objectSound) {
+    console.error('soundObject is undefined');
+    return null;
+  }
   if (!objectSound) {
     console.error('soundObject is undefined');
     return null;
@@ -36,6 +42,7 @@ export default function SymbolCard({ objectSound, onUpdate }) {
   // handleAddButton
   const handleAddButton = () => {
     addSoundToList({ user_id: user.id, symbol_id: objectSound.id });
+    onUpdate();
   };
 
   const handleModal = () => {
@@ -53,11 +60,12 @@ export default function SymbolCard({ objectSound, onUpdate }) {
           <Card.Text>
             {objectSound.pronunciation}
           </Card.Text>
-          <Container className="d-flex justify-content-evenly" style={{ padding: '1px' }}>
+          <Container className="d-flex flex-row justify-content-center align-content-center" style={{ padding: '1px' }}>
             <Button
               style={{ margin: '1px' }}
               onClick={handleAddButton}
               variant="success"
+              disabled={objectSound.added}
 
             >
               Add

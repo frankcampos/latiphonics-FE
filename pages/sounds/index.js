@@ -29,17 +29,12 @@ export default function Sounds() {
     <Container>
       <Container
         className="d-flex flex-wrap align-content-center justify-content-center "
-        style={{
-          borderColor: 'black', backgroundColor: 'green', height: '10vh',
-        }}
+        style={{ height: '10vh' }}
       >
         <Button onClick={handleClick} type="button">add a sound</Button>
       </Container>
       <Container
         className="d-flex flex-wrap align-content-evenly justify-content-center"
-        style={{
-          borderColor: '10px', backgroundColor: 'blue', height: '100vh',
-        }}
       >
         {sounds.length > 1 ? sounds.map((sound) => <SymbolCard key={sound.id} objectSound={sound} onUpdate={onUpdate} />) : <h1>Sorry you do not have any sound yet</h1>}
       </Container>
