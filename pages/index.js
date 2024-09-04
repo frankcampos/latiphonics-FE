@@ -1,22 +1,46 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import LearningSymbolCard from '../components/LearningSymbolCard';
+import { getAllMySounds } from '../api/mySounds';
 
 function Home() {
-  const [mySound, setMySound] = useState([]);
-  const soundLength = mySound.length;
-  return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      {soundLength ? 'these are my sounds' : <h1>Add sounds to your list </h1>}
+  const [mySounds, setMySounds] = useState([]);
+  const [onUpdate, setOnUpdate] = useState(0);
+  const soundLength = mySounds.length;
 
-    </div>
+  const handleOnUpdate = () => {
+    setOnUpdate((prevState) => prevState + 1);
+  };
+  const getSounds = () => {
+    getAllMySounds().then((respond) => {
+      setMySounds(respond);
+    });
+  };
+
+  useEffect(() => {
+    getSounds();
+  },
+  [onUpdate]);
+
+  return (
+    <Container className="d-flex flex-column flex-wrap justify-content-center align-content-center">
+      <div
+        className="d-flex  flex-wrap justify-content-center align-content-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '1000px',
+          margin: '0 auto',
+          flexDirection: 'row',
+        }}
+      >
+        {soundLength ? mySounds.map((sound) => <LearningSymbolCard key={sound.id} objectLearningSymbol={sound} onUpdate={handleOnUpdate} />)
+          : <h1>Add sounds to your list </h1>}
+
+      </div>
+    </Container>
   );
 }
 

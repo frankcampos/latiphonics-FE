@@ -1,12 +1,12 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
-@import url('https://fonts.googleapis.com/css2?family=Matemasie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, Matemasie, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: -apple-system, Playwrite DE Grund, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 

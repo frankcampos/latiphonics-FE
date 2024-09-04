@@ -13,6 +13,7 @@ export default function SymbolCard({ objectSound, onUpdate }) {
   const [show, setShow] = useState(false);
   const router = useRouter();
   const { user } = useAuth();
+  const [isAdded, setIsAdded] = useState(objectSound.added);
   // eslint-disable-next-line no-unused-vars
 
   console.warn(user);
@@ -41,8 +42,15 @@ export default function SymbolCard({ objectSound, onUpdate }) {
 
   // handleAddButton
   const handleAddButton = () => {
-    addSoundToList({ user_id: user.id, symbol_id: objectSound.id });
-    onUpdate();
+    setIsAdded(true);
+    addSoundToList({ user_id: user.id, symbol_id: objectSound.id })
+      .then(() => {
+        onUpdate();
+      })
+      .catch((error) => {
+        console.error('Error adding sound:', error);
+        setIsAdded(false);
+      });
   };
 
   const handleModal = () => {
@@ -52,7 +60,7 @@ export default function SymbolCard({ objectSound, onUpdate }) {
   const placeholderImage = 'https://via.placeholder.com/150';
   return (
     <>
-      <Card style={{ width: '250px', height: '350px', margin: '10px' }}>
+      <Card style={{ width: '250px', height: '450px', margin: '10px' }}>
         <Card.Body>
           <div className="image-container">
             <Card.Img variant="top" src={objectSound.picture_url || placeholderImage} alt="Sound" />
@@ -65,7 +73,7 @@ export default function SymbolCard({ objectSound, onUpdate }) {
               style={{ margin: '1px' }}
               onClick={handleAddButton}
               variant="success"
-              disabled={objectSound.added}
+              disabled={isAdded}
 
             >
               Add
