@@ -45,20 +45,24 @@ export default function ViewSound() {
     setIsEditingVideo(false);
   };
 
+  const handleOnclick = () => {
+    router.back();
+  };
+
   return (
-    <Container>
+    <Container style={{ padding: '20px', marginTop: '20px' }}>
       <h1>View Sound Details</h1>
-      <Image style={{ height: '400px' }} src={query.picture_url} alt="Sound" />
+      <Image style={{ height: '400px', marginBottom: '20px' }} src={query.picture_url} alt="Sound" />
       <h2>Example Phrases</h2>
       {examplePhrases.map((item, index) => (
-        <div key={index}>
+        <div key={index} style={{ marginBottom: '10px' }}>
           <p><strong>Phrase:</strong> {item.phrase}</p>
           <p><strong>IPA:</strong> {item.ipa}</p>
         </div>
       ))}
       <h2>Video</h2>
       {isEditingVideo ? (
-        <Form onSubmit={handleVideoUrlSubmit}>
+        <Form onSubmit={handleVideoUrlSubmit} style={{ marginBottom: '20px' }}>
           <Form.Group controlId="videoUrl">
             <Form.Label>Video URL</Form.Label>
             <Form.Control
@@ -67,15 +71,19 @@ export default function ViewSound() {
               onChange={handleVideoUrlChange}
               placeholder="Enter video URL"
               required
+              style={{ marginBottom: '10px' }}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" style={{ marginRight: '10px' }}>
             Submit
           </Button>
         </Form>
       ) : (
-        <ReactPlayer url={videoUrl} />
+        <ReactPlayer url={videoUrl} style={{ marginBottom: '20px' }} />
       )}
+      <Button variant="primary" type="button" onClick={handleOnclick}>
+        Go back
+      </Button>
     </Container>
   );
 }
