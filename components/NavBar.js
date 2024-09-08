@@ -42,7 +42,7 @@ export default function NavBar() {
               }}
             />
 
-            <Link passHref href="/delete-me">
+            <Link passHref href="/profile">
               <Nav.Link>My Profile</Nav.Link>
             </Link>
             <Link passHref href="/">
