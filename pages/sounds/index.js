@@ -22,7 +22,6 @@ export default function Sounds() {
   };
 
   const handleClick = () => {
-    console.warn('hola');
     router.push('/sounds/new');
   };
   return (

@@ -18,7 +18,6 @@ export default function EditUser() {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.warn('you clicked me');
     updateUser(userForm);
     router.back();
   };

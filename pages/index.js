@@ -21,25 +21,23 @@ function Home() {
 
   useEffect(() => {
     getSounds();
-  },
-  [onUpdate]);
+  }, [onUpdate]);
 
   return (
-    <Container className="d-flex flex-column flex-wrap justify-content-center align-content-center">
-      <div
-        className="d-flex  flex-wrap justify-content-center align-content-center"
+    <Container className="d-flex flex-column align-items-center" style={{ height: '100vh', overflow: 'hidden' }}>
+      <Container
+        className="d-flex flex-wrap justify-content-center align-content-start"
         style={{
-          height: '90vh',
-          padding: '30px',
+          height: 'calc(100vh - 60px)',
           maxWidth: '1000px',
+          overflowY: 'auto',
           margin: '0 auto',
-          flexDirection: 'row',
         }}
       >
-        {soundLength ? mySounds.map((sound) => <LearningSymbolCard key={sound.id} objectLearningSymbol={sound} onUpdate={handleOnUpdate} />)
-          : <h1>Add sounds to your list </h1>}
-
-      </div>
+        {soundLength ? mySounds.map((sound) => (
+          <LearningSymbolCard key={sound.id} objectLearningSymbol={sound} onUpdate={handleOnUpdate} />
+        )) : <h1>Add sounds to your list </h1>}
+      </Container>
     </Container>
   );
 }

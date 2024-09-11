@@ -6,8 +6,6 @@ function NewSound() {
   const router = useRouter();
   const { query } = router;
 
-  console.warn(query);
-
   // fetch the sound that I need.
   return (
     <>

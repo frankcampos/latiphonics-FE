@@ -11,17 +11,23 @@ import {
 } from 'react-bootstrap';
 import { addVideo } from '../api/mySounds';
 import { useAuth } from '../utils/context/authContext';
+import AddNoteCard from '../components/AddNoteCard';
+import NotesCard from '../components/NoteCard';
+import { getNotes } from '../api/note';
 
 export default function ViewSound() {
   const router = useRouter();
   const [pictureUrl, setPictureUrl] = useState('');
   const { query } = router;
-  console.warn(query.picture_url);
   const { user } = useAuth();
-  console.warn('this is my user', user);
+  const [onUpdate, setOnUpdate] = useState(0);
 
   const [videoUrl, setVideoUrl] = useState(query.video_url || '');
   const [isEditingVideo, setIsEditingVideo] = useState(!query.video_url);
+
+  const handleOnUpdate = () => {
+    setOnUpdate((prevState) => prevState + 1);
+  };
 
   useEffect(() => {
     if (query.picture_url) {
@@ -48,6 +54,11 @@ export default function ViewSound() {
   const handleOnclick = () => {
     router.back();
   };
+
+  useEffect(() => {
+    getNotes();
+  },
+  [onUpdate]);
 
   return (
     <Container style={{ padding: '20px', marginTop: '20px' }}>
@@ -81,6 +92,8 @@ export default function ViewSound() {
       ) : (
         <ReactPlayer url={videoUrl} style={{ marginBottom: '20px' }} />
       )}
+      <AddNoteCard learning_item={query.id} onUpdate={handleOnUpdate} />
+      <NotesCard onUpdate={onUpdate} onUpdateSet={handleOnUpdate} />
       <Button variant="primary" type="button" onClick={handleOnclick}>
         Go back
       </Button>

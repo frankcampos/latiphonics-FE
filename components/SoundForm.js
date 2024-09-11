@@ -39,11 +39,9 @@ function SoundForm({ objSound }) {
     event.preventDefault();
     const convertedData = convertFormData(formData);
     if (objSound.id) {
-      console.warn('very close');
       await updateSound(convertedData, objSound.id);
       router.push('/sounds');
     } else {
-      console.warn('handlechange', convertedData);
       await createSound(convertedData);
       router.push('/sounds');
     }

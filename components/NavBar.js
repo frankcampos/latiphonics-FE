@@ -9,13 +9,15 @@ import {
   Image,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
 export default function NavBar() {
+  const { user } = useAuth();
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container fluid>
         <Nav>
-          <Image src="/logo.jpg" alt="latiphinics" className=" logo" style={{ height: '40px', width: '40px', backgroundColor: 'transparent' }} />
+          <Image src="/logo.png" alt="latiphinics" className=" logo" style={{ height: '40px', width: '40px', backgroundColor: 'transparent' }} />
           <Link passHref href="/">
             <Navbar.Brand>LatiPhonics</Navbar.Brand>
           </Link>
@@ -34,7 +36,7 @@ export default function NavBar() {
           </Nav>
           <Nav style={{ alignContent: 'flex-end' }}>
             <Image
-              src="/mypic.jpg"
+              src={user.photo}
               alt="latiphinics"
               className=" logo"
               style={{

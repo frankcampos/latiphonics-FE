@@ -41,7 +41,7 @@ export default function LearningSymbolCard({ objectLearningSymbol, onUpdate }) {
   const placeholderImage = 'https://via.placeholder.com/150';
   return (
     <>
-      <Card style={{ width: '250px', height: '450px', margin: '10px' }}>
+      <Card style={{ width: '250px', height: '550px', margin: '10px' }}>
         <Card.Body>
           <div className="image-container">
             <Card.Img variant="top" src={symbol?.picture_url || placeholderImage} alt="Sound" />

@@ -16,7 +16,6 @@ export default function SymbolCard({ objectSound, onUpdate }) {
   const [isAdded, setIsAdded] = useState(objectSound.added);
   // eslint-disable-next-line no-unused-vars
 
-  console.warn(user);
   if (!objectSound) {
     console.error('soundObject is undefined');
     return null;
@@ -27,7 +26,6 @@ export default function SymbolCard({ objectSound, onUpdate }) {
   }
 
   const handleDelete = () => {
-    console.warn('i clicked delete');
     deleteSound(objectSound.id);
     setShow(!show);
     onUpdate();
@@ -60,7 +58,7 @@ export default function SymbolCard({ objectSound, onUpdate }) {
   const placeholderImage = 'https://via.placeholder.com/150';
   return (
     <>
-      <Card style={{ width: '250px', height: '450px', margin: '10px' }}>
+      <Card style={{ width: '250px', height: '500px', margin: '10px' }}>
         <Card.Body>
           <div className="image-container">
             <Card.Img variant="top" src={objectSound.picture_url || placeholderImage} alt="Sound" />
