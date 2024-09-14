@@ -1,6 +1,4 @@
 
-List of contributors and links to their GH profiles
-Link to Loom video walkthrough of your deployed postman (no more than 1 minute long! Make it great)
 # LatiPhonics
 
 The main goal of the project is to help users learn specific sounds of the English language by using the International Phonetic Alphabet (IPA) as a reference. With the help of Artificial Intelligence, the project generates everyday phrases based on the user's personal 'About Me' information.
