@@ -1,8 +1,8 @@
 {
-  "name": "next-firebase-starter",
+  "name": "latiphonics",
   "private": true,
   "version": "1.0.0",
-  "author": "Trinity Christiana",
+  "author": "Frank Campos",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,7 +25,9 @@
     "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-bootstrap": "^2.4.0",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-icons": "^5.3.0",
+    "react-player": "^2.16.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
