@@ -1,44 +1,24 @@
-# React/Next.js Django Auth Template
 
-## Topics
-- [Get Started](#getting-started)
-- [Starting the Project](#starting-the-project)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+List of contributors and links to their GH profiles
+Link to Loom video walkthrough of your deployed postman (no more than 1 minute long! Make it great)
+# LatiPhonics
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+The main goal of the project is to help users learn specific sounds of the English language by using the International Phonetic Alphabet (IPA) as a reference. With the help of Artificial Intelligence, the project generates everyday phrases based on the user's personal 'About Me' information.
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+- [Project Board](https://github.com/users/frankcampos/projects/10)
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+The user is someone who wants to learn how to speak English. In my case, English is my second language, and while we share the same alphabet, the sounds of the vowels and consonants can be very different. Practicing these sounds helps improve both pronunciation and listening skills.
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+1. You can add, delete, and update sounds on the Sounds page.
+1. You can add sounds to a personal list.
+1. You can remove and view sounds in your personal list.
+1. On the view page, you have the option to add a video.
+1. The view page will generate 3 phrases using the selected sound and your "About Me" information.
+1. You can add notes on the view sound page.
+1. On your profile page, you can view and modify your profile information.
 
+## Video Walkthrough of LatiPhonics <!-- A loom link is sufficient -->
+https://www.loom.com/share/c362c76ec25245a68053330c836d0c0a?sid=4e4588e8-35bc-4958-b7a4-ed7a39f2dea3
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
-
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Video Walkthrough: Testing Endpoints with Postman <!-- A Loom link is sufficient -->
+https://www.loom.com/share/46328c145dc9431a85fcab1df672b67b?sid=5d13f10c-b15d-487e-a991-22880bb33bcb
