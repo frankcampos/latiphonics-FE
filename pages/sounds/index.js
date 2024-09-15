@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaPlus } from 'react-icons/fa';
 import { Container, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import SymbolCard from '../../components/SymbolCard';
@@ -30,7 +31,7 @@ export default function Sounds() {
         className="d-flex flex-wrap align-content-center justify-content-center "
         style={{ height: '10vh' }}
       >
-        <Button onClick={handleClick} type="button">add a sound</Button>
+        <Button variant="outline-primary" style={{ fontFamily: 'Arial, sans-serif' }} onClick={handleClick} type="button"><FaPlus /> Add a Sound</Button>
       </Container>
       <Container
         className="d-flex flex-wrap align-content-evenly justify-content-center"

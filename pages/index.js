@@ -13,6 +13,7 @@ function Home() {
   const handleOnUpdate = () => {
     setOnUpdate((prevState) => prevState + 1);
   };
+
   const getSounds = () => {
     getAllMySounds().then((respond) => {
       setMySounds(respond);
@@ -26,16 +27,16 @@ function Home() {
   return (
     <Container className="d-flex flex-column align-items-center" style={{ height: '100vh', overflow: 'hidden' }}>
       <Container
-        className="d-flex flex-wrap justify-content-center align-content-start"
+        className="d-flex flex-wrap justify-content-center align-items-center gap-3"
         style={{
           height: 'calc(100vh - 60px)',
-          maxWidth: '1000px',
-          overflowY: 'auto',
-          margin: '0 auto',
+          width: '100%',
         }}
       >
         {soundLength ? mySounds.map((sound) => (
-          <LearningSymbolCard key={sound.id} objectLearningSymbol={sound} onUpdate={handleOnUpdate} />
+          <div key={sound.id} style={{ width: '300px' }}>
+            <LearningSymbolCard objectLearningSymbol={sound} onUpdate={handleOnUpdate} />
+          </div>
         )) : <h1>Add sounds to your list </h1>}
       </Container>
     </Container>
