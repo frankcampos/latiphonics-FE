@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { Card, Container, Button } from 'react-bootstrap';
+import { FaTrash } from 'react-icons/fa';
 import { deleteNote, getNotes } from '../api/note';
 
 export default function NotesCard({ onUpdate }) {
@@ -34,18 +35,18 @@ export default function NotesCard({ onUpdate }) {
 
   return (
     <Container style={{ padding: '20px', marginTop: '20px' }}>
-      <h1>Your Notes</h1>
+      <h5 className="text-left">My Notes</h5>
       {notes.length === 0 ? (
-        <p>Nothing to show</p>
+        <p className="text-left">Nothing to show</p>
       ) : (
         notes.map((note) => (
-          <Card key={note.id} style={{ marginBottom: '10px' }}>
-            <Card.Body>
-              <Card.Text>
+          <Card key={note.id} style={{ marginBottom: '10px' }} className="text-left">
+            <Card.Body className="text-left">
+              <Card.Text className="d-flex flex-column justify-content-center align-items-start">
                 <strong>Note:</strong> {note.note_text}
               </Card.Text>
               <Button type="submit" onClick={() => handleDelete(note.id)} variant="danger">
-                Delete
+                <FaTrash /> Delete
               </Button>
             </Card.Body>
           </Card>
