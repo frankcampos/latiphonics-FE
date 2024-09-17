@@ -43,7 +43,7 @@ export default function EditUser() {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="my-5" style={{ fontFamily: 'Arial, sans-serif' }}>
       <h1 className="text-center my-4">Edit Profile</h1>
       <Form onSubmit={handleOnSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formGroupFirstName">
@@ -96,8 +96,8 @@ export default function EditUser() {
           </Col>
         </Form.Group>
         <div className="text-center">
-          <Button variant="primary" type="submit" className="me-2">Submit</Button>
-          <Button variant="secondary" onClick={handleGoBack}>
+          <Button variant="dark" type="submit" className="me-2">Submit</Button>
+          <Button variant="outline-primary" onClick={handleGoBack}>
             <FaArrowLeft /> Go Back
           </Button>
         </div>

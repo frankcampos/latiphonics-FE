@@ -8,7 +8,7 @@
 // update or refresh the page every time that I click the button remove
 import { React, useState } from 'react';
 import { useRouter } from 'next/router';
-import { FaTrash, FaEye } from 'react-icons/fa';
+import { FaTrash, FaEye, FaTimes } from 'react-icons/fa';
 import {
   Card, Container, Button, Modal, Row, Col,
 } from 'react-bootstrap';
@@ -73,7 +73,7 @@ export default function LearningSymbolCard({ objectLearningSymbol, onUpdate }) {
           </Container>
         </Card.Body>
       </Card>
-      <Modal show={show} onHide={handleModal}>
+      <Modal show={show} style={{ fontFamily: 'Arial, sans-serif' }} onHide={handleModal}>
         <Modal.Header closeButton>
           <Modal.Title>remove</Modal.Title>
         </Modal.Header>
@@ -81,10 +81,10 @@ export default function LearningSymbolCard({ objectLearningSymbol, onUpdate }) {
         <Modal.Footer>
           <Container className="d-flex justify-content-around">
             <Button variant="secondary" onClick={handleModal}>
-              cancel
+              <FaTimes /> Cancel
             </Button>
             <Button variant="danger" onClick={handleDelete}>
-              Delete
+              <FaTrash /> Delete
             </Button>
           </Container>
         </Modal.Footer>

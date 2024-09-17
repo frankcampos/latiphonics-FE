@@ -4,7 +4,9 @@ import {
   Button, Card, Container, Modal, Row, Col,
 } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import { FaTrash, FaPlus, FaEdit } from 'react-icons/fa';
+import {
+  FaTrash, FaPlus, FaEdit, FaTimes,
+} from 'react-icons/fa';
 import { useAuth } from '../utils/context/authContext';
 import { deleteSound, addSoundToList } from '../api/sounds.JS';
 
@@ -105,7 +107,7 @@ export default function SymbolCard({ objectSound, onUpdate }) {
           </Container>
         </Card.Body>
       </Card>
-      <Modal show={show} onHide={handleModal}>
+      <Modal show={show} onHide={handleModal} style={{ fontFamily: 'Arial, sans-serif' }}>
         <Modal.Header closeButton>
           <Modal.Title>Delete Sound</Modal.Title>
         </Modal.Header>
@@ -113,10 +115,10 @@ export default function SymbolCard({ objectSound, onUpdate }) {
         <Modal.Footer>
           <Container className="d-flex justify-content-around">
             <Button variant="secondary" onClick={handleModal}>
-              Cancel
+              <FaTimes /> Cancel
             </Button>
             <Button variant="danger" onClick={handleDelete}>
-              Delete
+              <FaTrash /> Delete
             </Button>
           </Container>
         </Modal.Footer>
