@@ -48,7 +48,7 @@ function SoundForm({ objSound }) {
   };
 
   return (
-    <Container>
+    <Container style={{ fontFamily: 'Arial, sans-serif' }}>
       <h2 className="my-4 text-center">{objSound.id ? 'Update the Sound' : 'Add a Sound'}</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formGroupPictureUrl">

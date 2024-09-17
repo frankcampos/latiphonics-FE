@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
+import { FaSignOutAlt } from 'react-icons/fa';
 import {
   Navbar, //
   Container,
@@ -48,8 +49,8 @@ export default function NavBar() {
               <Nav.Link>My Profile</Nav.Link>
             </Link>
             <Link passHref href="/">
-              <Button variant="danger" onClick={signOut}>
-                Sign Out
+              <Button className="m-1 ms-3" variant="danger" onClick={signOut}>
+                <FaSignOutAlt /> Sign Out
               </Button>
             </Link>
           </Nav>

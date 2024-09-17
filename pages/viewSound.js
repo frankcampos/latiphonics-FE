@@ -7,8 +7,9 @@ import ReactPlayer from 'react-player';
 
 import React, { useState, useEffect } from 'react';
 import {
-  Container, Form, Button, Image,
+  Container, Form, Button, Image, Card, Row, Col,
 } from 'react-bootstrap';
+import { FaArrowLeft, FaCheck, FaVideo } from 'react-icons/fa';
 import { addVideo } from '../api/mySounds';
 import { useAuth } from '../utils/context/authContext';
 import AddNoteCard from '../components/AddNoteCard';
@@ -28,6 +29,8 @@ export default function ViewSound() {
   const handleOnUpdate = () => {
     setOnUpdate((prevState) => prevState + 1);
   };
+
+  console.warn('query', query.sound_url);
 
   useEffect(() => {
     if (query.picture_url) {
@@ -57,44 +60,70 @@ export default function ViewSound() {
 
   useEffect(() => {
     getNotes();
-  },
-  [onUpdate]);
+  }, [onUpdate]);
 
   return (
-    <Container style={{ padding: '20px', marginTop: '20px' }}>
-      <h1>View Sound Details</h1>
-      <Image style={{ height: '400px', marginBottom: '20px' }} src={query.picture_url} alt="Sound" />
-      <h2>Example Phrases</h2>
-      {examplePhrases.map((item, index) => (
-        <div key={index} style={{ marginBottom: '10px' }}>
-          <p><strong>Phrase:</strong> {item.phrase}</p>
-          <p><strong>IPA:</strong> {item.ipa}</p>
-        </div>
-      ))}
-      <h2>Video</h2>
-      {isEditingVideo ? (
-        <Form onSubmit={handleVideoUrlSubmit} style={{ marginBottom: '20px' }}>
-          <Form.Group controlId="videoUrl">
-            <Form.Label>Video URL</Form.Label>
-            <Form.Control
-              type="url"
-              value={videoUrl}
-              onChange={handleVideoUrlChange}
-              placeholder="Enter video URL"
-              required
-              style={{ marginBottom: '10px' }}
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit" style={{ marginRight: '10px' }}>
-            Submit
-          </Button>
-        </Form>
-      ) : (
-        <ReactPlayer url={videoUrl} style={{ marginBottom: '20px' }} />
-      )}
-      <AddNoteCard learning_item={query.id} onUpdate={handleOnUpdate} />
-      <NotesCard onUpdate={onUpdate} onUpdateSet={handleOnUpdate} />
-      <Button variant="primary" type="button" onClick={handleOnclick}>
+    <Container style={{ padding: '20px', marginTop: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <Card className="mb-4 shadow-sm" style={{ border: '1px solid #ddd' }}>
+        <Row noGutters>
+          <Col md={6}>
+            <Image style={{ height: '100%', width: '100%', objectFit: 'cover' }} src={query.picture_url} alt="Sound" />
+          </Col>
+          <Col md={6}>
+            <Card.Body>
+              <h1>Example Phrases</h1>
+              {examplePhrases.map((item, index) => (
+                <div key={index} style={{ marginBottom: '10px' }}>
+                  <h3><strong>Phrase:</strong> {item.phrase}</h3>
+                  <h3><strong>IPA:</strong> {item.ipa}</h3>
+                </div>
+              ))}
+            </Card.Body>
+          </Col>
+        </Row>
+      </Card>
+      <Card className="mb-4 shadow-sm" style={{ border: '1px solid #ddd' }}>
+        <Card.Body>
+          <Card.Title><FaVideo /> Video</Card.Title>
+          {isEditingVideo ? (
+            <Form onSubmit={handleVideoUrlSubmit} style={{ marginBottom: '20px' }}>
+              <Form.Group controlId="videoUrl">
+                <Form.Label>Video URL</Form.Label>
+                <Form.Control
+                  type="url"
+                  value={videoUrl}
+                  onChange={handleVideoUrlChange}
+                  placeholder="Enter video URL"
+                  required
+                  style={{ marginBottom: '10px' }}
+                />
+              </Form.Group>
+              <Button variant="dark" type="submit" style={{ marginRight: '10px' }}>
+                <FaCheck style={{ marginRight: '5px' }} />
+                Submit
+              </Button>
+            </Form>
+          ) : (
+            <Row className="justify-content-center mb-4">
+              <Col md={8}>
+                <ReactPlayer url={videoUrl} width="100%" />
+              </Col>
+            </Row>
+          )}
+        </Card.Body>
+      </Card>
+      <Card className="mb-4 shadow-sm" style={{ border: '1px solid #ddd' }}>
+        <Card.Body>
+          <AddNoteCard learning_item={query.id} onUpdate={handleOnUpdate} />
+        </Card.Body>
+      </Card>
+      <Card className="mb-4 shadow-sm" style={{ border: '1px solid #ddd', textAlign: 'left' }}>
+        <Card.Body style={{ border: '1px solid #ddd', textAlign: 'left' }}>
+          <NotesCard onUpdate={onUpdate} onUpdateSet={handleOnUpdate} />
+        </Card.Body>
+      </Card>
+      <Button variant="outline-primary" type="button" onClick={handleOnclick} style={{ marginTop: '20px' }}>
+        <FaArrowLeft style={{ marginRight: '5px' }} />
         Go back
       </Button>
     </Container>

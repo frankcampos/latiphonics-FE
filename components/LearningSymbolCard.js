@@ -6,11 +6,11 @@
 // call the endpoint to get all learning_item_ symbol
 // when I click the button view send the learning item object to populate the view page
 // update or refresh the page every time that I click the button remove
-
 import { React, useState } from 'react';
 import { useRouter } from 'next/router';
+import { FaTrash, FaEye, FaTimes } from 'react-icons/fa';
 import {
-  Card, Container, Button, Modal,
+  Card, Container, Button, Modal, Row, Col,
 } from 'react-bootstrap';
 import { deleteMySound } from '../api/mySounds';
 
@@ -35,27 +35,46 @@ export default function LearningSymbolCard({ objectLearningSymbol, onUpdate }) {
       query: {
         ...learning_symbol,
         picture_url: symbol.picture_url,
+        sound_url: symbol.sound_url,
       },
     });
   };
+
   const placeholderImage = 'https://via.placeholder.com/150';
+
   return (
     <>
-      <Card style={{ width: '250px', height: '550px', margin: '10px' }}>
-        <Card.Body>
+
+      <Card
+        className="m-3 shadow-lg rounded  card-hover"
+        style={{
+          width: '250px', height: '400px', fontFamily: 'Arial, sans-serif', borderRadius: '15px',
+        }}
+      >
+        <Card.Body className="d-flex flex-column justify-content-between">
           <div className="image-container">
             <Card.Img variant="top" src={symbol?.picture_url || placeholderImage} alt="Sound" />
           </div>
-          <Card.Text>
+          <Card.Text className="card-text">
             {symbol.pronunciation}
           </Card.Text>
-          <Container className="d-flex flex-row justify-content-center align-content-center" style={{ padding: '1px' }}>
-            <Button style={{ margin: '1px' }} onClick={handleModal} variant="danger">remove</Button>
-            <Button style={{ margin: '1px' }} onClick={handleViewButton} variant="primary">view</Button>
+          <Container fluid className="d-flex justify-content-around flex-wrap">
+            <Row className="w-100">
+              <Col className="p-1">
+                <Button className="w-100 text-center" onClick={handleModal} variant="danger">
+                  <FaTrash />
+                </Button>
+              </Col>
+              <Col className="p-1">
+                <Button className="w-100 text-center" onClick={handleViewButton} variant="dark">
+                  <FaEye />
+                </Button>
+              </Col>
+            </Row>
           </Container>
         </Card.Body>
       </Card>
-      <Modal show={show} onHide={handleModal}>
+      <Modal show={show} style={{ fontFamily: 'Arial, sans-serif' }} onHide={handleModal}>
         <Modal.Header closeButton>
           <Modal.Title>remove</Modal.Title>
         </Modal.Header>
@@ -63,10 +82,10 @@ export default function LearningSymbolCard({ objectLearningSymbol, onUpdate }) {
         <Modal.Footer>
           <Container className="d-flex justify-content-around">
             <Button variant="secondary" onClick={handleModal}>
-              cancel
+              <FaTimes /> Cancel
             </Button>
             <Button variant="danger" onClick={handleDelete}>
-              Delete
+              <FaTrash /> Delete
             </Button>
           </Container>
         </Modal.Footer>
