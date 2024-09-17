@@ -30,6 +30,8 @@ export default function ViewSound() {
     setOnUpdate((prevState) => prevState + 1);
   };
 
+  console.warn('query', query.sound_url);
+
   useEffect(() => {
     if (query.picture_url) {
       setPictureUrl(query.picture_url);

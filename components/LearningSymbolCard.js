@@ -35,6 +35,7 @@ export default function LearningSymbolCard({ objectLearningSymbol, onUpdate }) {
       query: {
         ...learning_symbol,
         picture_url: symbol.picture_url,
+        sound_url: symbol.sound_url,
       },
     });
   };

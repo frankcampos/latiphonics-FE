@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { useState, React } from 'react';
+import { useState, React, useEffect } from 'react';
 import {
   Button, Card, Container, Modal, Row, Col,
 } from 'react-bootstrap';
+import 'firebase/storage';
+import firebase from 'firebase/app';
 import { useRouter } from 'next/router';
 import {
   FaTrash, FaPlus, FaEdit, FaTimes,
@@ -12,14 +15,10 @@ import { deleteSound, addSoundToList } from '../api/sounds.JS';
 
 export default function SymbolCard({ objectSound, onUpdate }) {
   const [show, setShow] = useState(false);
+  const [audioUrl, setAudioUrl] = useState(null);
   const router = useRouter();
   const { user } = useAuth();
   const [isAdded, setIsAdded] = useState(objectSound.added);
-
-  if (!objectSound) {
-    console.error('soundObject is undefined');
-    return null;
-  }
 
   const handleDelete = () => {
     deleteSound(objectSound.id);
@@ -32,6 +31,18 @@ export default function SymbolCard({ objectSound, onUpdate }) {
       pathname: '/sounds/update',
       query: objectSound,
     });
+  };
+
+  const getUrlSound = async () => {
+    try {
+      const storage = firebase.storage();
+      const storageRef = storage.ref();
+      const soundRef = storageRef.child(objectSound?.sound_url);
+      const url = await soundRef.getDownloadURL();
+      setAudioUrl(url);
+    } catch (error) {
+      console.error('Error getting sound:', error);
+    }
   };
 
   const handleAddButton = () => {
@@ -50,6 +61,17 @@ export default function SymbolCard({ objectSound, onUpdate }) {
     setShow(!show);
   };
 
+  useEffect(() => {
+    getUrlSound();
+  }, [objectSound]);
+
+  const handleImageClick = () => {
+    const audioElement = document.getElementById(`audio-${objectSound.id}`);
+    if (audioElement) {
+      audioElement.play();
+    }
+  };
+
   const placeholderImage = 'https://via.placeholder.com/150';
   return (
     <>
@@ -61,7 +83,13 @@ export default function SymbolCard({ objectSound, onUpdate }) {
       >
         <Card.Body className="d-flex flex-column justify-content-between">
           <div className="image-container d-flex justify-content-center">
-            <Card.Img variant="top" src={objectSound.picture_url || placeholderImage} alt="Sound" />
+            <Card.Img
+              variant="top"
+              src={objectSound.picture_url || placeholderImage}
+              alt="Sound"
+              onClick={handleImageClick}
+              className="clickable-image"
+            />
           </div>
           <Card.Text className="text-center">
             {objectSound.pronunciation}
@@ -104,6 +132,11 @@ export default function SymbolCard({ objectSound, onUpdate }) {
                 </Button>
               </Col>
             </Row>
+            {audioUrl && (
+              <audio id={`audio-${objectSound.id}`} src={audioUrl}>
+                <track kind="captions" />
+              </audio>
+            )}
           </Container>
         </Card.Body>
       </Card>
