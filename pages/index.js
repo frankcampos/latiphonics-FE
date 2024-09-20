@@ -25,7 +25,7 @@ function Home() {
   }, [onUpdate]);
 
   return (
-    <Container className="d-flex flex-column align-items-center" style={{ height: '100vh', overflow: 'hidden' }}>
+    <Container className="d-flex flex-column align-items-center" style={{ height: '100vh' }}>
       <Container
         className="d-flex flex-wrap justify-content-center align-items-center gap-3"
         style={{
