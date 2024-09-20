@@ -47,7 +47,7 @@ export default function SymbolCard({ objectSound, onUpdate }) {
 
   const handleAddButton = () => {
     setIsAdded(true);
-    addSoundToList({ user_id: user.id, symbol_id: objectSound.id })
+    addSoundToList({ user_id: user.id, symbol_id: objectSound.id, video_url: objectSound.video_url || '' })
       .then(() => {
         onUpdate();
       })
