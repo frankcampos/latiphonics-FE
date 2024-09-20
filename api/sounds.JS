@@ -75,7 +75,7 @@ async function addSoundToList(payload) {
       },
       body: JSON.stringify(payload),
     });
-    const data = (await response).json();
+    const data = await response;
     return data;
   } catch (error) {
     console.warn('I could not add the symbol', error);
