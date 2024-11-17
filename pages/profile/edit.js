@@ -87,7 +87,7 @@ export default function EditUser() {
           <Col sm={10}>
             <Form.Control
               as="textarea"
-              rows={3}
+              rows={15}
               value={userForm.about || ''}
               name="about"
               placeholder="Tell us about yourself"

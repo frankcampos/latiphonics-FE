@@ -64,7 +64,8 @@ function RegisterForm({ user, updateUser }) {
       <Form.Group className="mb-3" controlId="formAbout">
         <Form.Label>About</Form.Label>
         <Form.Control
-          type="text"
+          as="textarea"
+          rows={15}
           name="about"
           placeholder="about"
           value={formData.about}
