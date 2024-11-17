@@ -2,9 +2,9 @@
 const url = process.env.NEXT_PUBLIC_DATABASE_URL;
 
 // get all sounds promise or async function
-async function getAllSounds() {
+async function getAllSounds(userId) {
   try {
-    const response = await fetch(`${url}/symbol`);
+    const response = await fetch(`${url}/symbol?user_id=${userId}`);
     const data = await response.json();
     return data;
   } catch {

@@ -5,17 +5,19 @@ import { useRouter } from 'next/router';
 import SymbolCard from '../../components/SymbolCard';
 
 import { getAllSounds } from '../../api/sounds.JS';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function Sounds() {
   const router = useRouter();
   const [sounds, setSounds] = useState([]);
   const [update, setUpdate] = useState(0);
+  const { user } = useAuth();
 
   useEffect(() => {
-    getAllSounds().then((respond) => {
+    getAllSounds(user.id).then((respond) => {
       setSounds(respond);
     });
-  }, [update]);
+  }, [user.id, update]);
 
   const onUpdate = () => {
     setUpdate((preVal) => preVal + 1);

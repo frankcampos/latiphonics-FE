@@ -1,12 +1,12 @@
 const url = process.env.NEXT_PUBLIC_DATABASE_URL;
 
-async function getAllMySounds() {
+async function getAllMySounds(userId) {
   try {
-    const response = await fetch(`${url}/learn-item-symbol`);
+    const response = await fetch(`${url}/learn-item-symbol?user_id=${userId}`);
     const data = await response.json();
     return data;
-  } catch {
-    console.warn('I could get all my sounds', Error);
+  } catch(error) {
+    console.warn('I could not get all my sounds', error);
   }
 
   return [];
